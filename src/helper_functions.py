@@ -1,4 +1,4 @@
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import (
     mean_absolute_error,
     mean_squared_error,
@@ -24,12 +24,17 @@ def model_metrics(regressor, X, y):
     mae = mean_absolute_error(y_true=y, y_pred=y_pred)
     mse = mean_squared_error(y_true=y, y_pred=y_pred)
     r2 = r2_score(y_true=y, y_pred=y_pred)
-    print("%s Mean Absolute Error: " %str(regressor), mae)
-    print("%s Mean Squared Error: " %str(regressor), mse)
-    print("%s R Squared: " %str(regressor), r2)
+    print(f"{regressor} Mean Absolute Error: ", mae)
+    print(f"{regressor} Mean Squared Error: ", mse)
+    print(f"{regressor} R Squared: ", r2)
     adj_r2 = 1 - ((1 - r2) * (X.shape[0] - 1) / (X.shape[0] - X.shape[1] - 1)) # from Renda's notebook
-    print('%s Adjusted R Squared: ' %str(regressor), adj_r2)
+    print(f"{regressor} Adjusted R Squared: ", adj_r2)
     if isinstance(regressor, RandomForestRegressor) and hasattr(regressor, 'oob_score_'):
-        print("%s Out-Of-Bag Score: " %str(regressor), regressor.oob_score_)
+        print(f"{regressor} Out-Of-Bag Score: ", regressor.oob_score_)
     return
 
+def gridsearch_crossval(regressor, params, X, y, cv, scoring):
+    grid_search = GridSearchCV(estimator=regressor, param_grid=params, scoring=scoring, n_jobs=-1, cv=cv, verbose=2)
+    grid_search.fit(X, y)
+    best_estimator = grid_search.best_estimator_
+    return best_estimator
