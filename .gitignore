@@ -3,3 +3,6 @@
 
 # Ignore ai4sg DB credentials
 sql/*.txt
+
+# Ignore NYPD crime data acquired from https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i/data
+data/NYPD_Complaint_Data_Historic.csv
