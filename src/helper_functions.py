@@ -34,7 +34,7 @@ def model_metrics(regressor, X, y):
     return
 
 def gridsearch_crossval(regressor, params, X, y, cv, scoring):
-    grid_search = GridSearchCV(estimator=regressor, param_grid=params, scoring=scoring, n_jobs=-1, cv=cv, verbose=2)
+    grid_search = GridSearchCV(estimator=regressor, param_grid=params, scoring=scoring, n_jobs=-1, cv=cv, verbose=0)
     grid_search.fit(X, y)
     best_estimator = grid_search.best_estimator_
     return best_estimator
