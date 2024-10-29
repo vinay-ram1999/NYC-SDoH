@@ -6,4 +6,6 @@
 sql/*.txt
 
 # Ignore NYPD crime data acquired from https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i/about_data
-data/NYPD_Complaint_Data_Historic/NYPD_Complaint_Data_Historic**.csv
+**NYPD_Complaint_Data_Historic**.csv
+# Ignore NYC Open Data for Modified Zip Code Tabulation Areas (MODZCTA) from https://data.cityofnewyork.us/Health/Modified-Zip-Code-Tabulation-Areas-MODZCTA-/pri4-ifjk/about_data
+**MODZCTA**.geojson
